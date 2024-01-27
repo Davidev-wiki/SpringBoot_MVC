@@ -1,0 +1,478 @@
+<!-- 
+	domain : https://davidev-wiki.github.io/Miracle_Vision_Project/web/
+-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Miracle Vision</title>
+	<link type="text/css" rel="stylesheet" href="/css/index.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+		rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="js/index.js" defer></script>
+	<script
+			src="https://code.jquery.com/jquery-3.7.1.slim.js"
+			integrity="sha256-UgvvN8vBkgO0luPSUl2s8TIlOSYRoGFAX4jlCIm9Adc="
+			crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+	<header>
+
+		<nav class="navbar navbar-dark bg-dark fixed-top">
+			<div class="container-fluid">
+
+				<a class="navbar-brand" href="#">MVP Guide</a>
+
+				<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+					data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
+					aria-labelledby="offcanvasNavbarLabel">
+
+					<div class="offcanvas-header">
+						<h5 class="offcanvas-title" id="offcanvasNavbarLabel">운영자에게 고마움 전하기</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+					</div>
+
+					<div class="offcanvas-body">
+						<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+							<img src="images/qrcode.jpg">
+							<li class="nav-item">
+								前) 창업보육전문매니저</a>
+							</li>
+							<li class="nav-item">
+								<address>
+									<p>
+										Email: <a href="mailto:contact@example.com">davidev@kakao.com</a></p>
+								</address>
+							</li>
+							<li class="nav-item dropdown"></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</nav>
+
+	</header>
+
+	<section class="main_container">
+
+		<div class="main sidebar_menu_container">
+			<aside class="sidebar_menu">
+				<!-- Start Navigation -->
+				<nav class="navbar navbar-dark bg-white">
+					<div class="buttons_container">
+						<!-- navigation_button_01 -->
+						<div class="btn-group dropend">
+							<button type="button" class="btn btn btn-white dropdown-toggle" data-bs-toggle="dropdown"
+								aria-expanded="false">
+								공고 검색
+							</button>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item" href="https://www.k-startup.go.kr/"
+										target="_blank">k-startup(새
+										창)</a>
+								</li>
+								<li><a class="dropdown-item"
+										href="https://www.bizinfo.go.kr/see/seea/selectSEEA100.do">기업마당</a>
+								</li>
+								<li><a class="dropdown-item"
+										href="https://www.ntis.go.kr/rndgate/eg/un/ra/mng.do">국가R&D통합공고</a>
+								</li>
+								<li><a class="dropdown-item" href="https://www.koita.or.kr/">한국산업기술진흥협회</a></li>
+								<li><a class="dropdown-item"
+										href="https://www.smtech.go.kr/front/main/main.do">SMTECH</a>
+								</li>
+								<li><a class="dropdown-item"
+										href="https://www.wbiz.or.kr/web/bizinfo/BD_index.do">여성기업지원사업</a></li>
+							</ul>
+						</div>
+
+						<!-- navigation_button_02 -->
+						<div class="btn-group dropend">
+							<button type="button" class="btn btn btn-white dropdown-toggle" data-bs-toggle="dropdown"
+								aria-expanded="false">
+								창업 인사이트
+							</button>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item"
+										href="https://www.k-startup.go.kr/edu/home/main/index">창업에듀(새
+										창)</a>
+								</li>
+<!--
+								<li><a class="dropdown-item" href="http://startup-wiki.kr/">스타트업 용어사전</a></li>
+-->
+								<li><a class="dropdown-item" href="https://platum.kr/">플래텀</a></li>
+								<li><a class="dropdown-item" href="https://besuccess.com/">beSUCCESS</a></li>
+								<li><a class="dropdown-item" href="http://www.venturesquare.net/">벤처스퀘어</a></li>
+								<li><a class="dropdown-item"
+										href="https://www.mobiinside.co.kr/business/start-up/">모비인사이드</a></li>
+								<li><a class="dropdown-item" href="https://outstanding.kr/">아웃스탠딩</a></li>
+								<li><a class="dropdown-item" href="https://www.bloter.net/">블로터</a></li>
+								<li><a class="dropdown-item" href="https://verticalplatform.kr/">버티컬플랫폼</a></li>
+								<li><a class="dropdown-item" href="https://goventureforum.com/forum_replay/">GO벤처포럼</a>
+								</li>
+								<li><a class="dropdown-item" href="https://thevc.kr/">한국 스타트업 투자 현황</a></li>
+								</li>
+							</ul>
+						</div>
+
+						<!-- navigation_button_03 -->
+						<div class="btn-group dropend">
+							<button type="button" class="btn btn btn-white dropdown-toggle" data-bs-toggle="dropdown"
+								aria-expanded="false">
+								창업 유관기관
+							</button>
+							<ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+								<li><a class="dropdown-item" href="https://www.motie.go.kr/">산업통상자원부(새 창)</a></li>
+								<li><a class="dropdown-item" href="https://www.msit.go.kr/index.do">과학기술정보통신부</a>
+								</li>
+								<li><a class="dropdown-item" href="https://www.mss.go.kr/site/smba/main.do">중소벤처기업부</a>
+								</li>
+								<li><a class="dropdown-item"
+										href="https://www.kosmes.or.kr/nsh/map/main.do">중소벤처기업진흥공단</a>
+								</li>
+								<li><a class="dropdown-item" href="https://www.kised.or.kr/">창업진흥원</a></li>
+								<li><a class="dropdown-item"
+										href="https://www.semas.or.kr/web/main/index.kmdc">소상공인시장진흥공단</a></li>
+								<li><a class="dropdown-item" href="https://www.sba.seoul.kr/">서울경제진흥원</a></li>
+								<li><a class="dropdown-item" href="https://www.kisa.or.kr/">한국인터넷진흥원(새 창)</a></li>
+								<li><a class="dropdown-item" href="https://www.nipa.kr/">정보통신산업진흥원(새 창)</a></li>
+								<li><a class="dropdown-item" href="https://www.kocca.kr/kocca/main.do">한국콘텐츠진흥원(새 창)</a>
+								</li>
+								<li><a class="dropdown-item" href="https://www.wbiz.or.kr/index.do">여성기업종합정보포털</a>
+								</li>
+							</ul>
+						</div>
+
+						<!-- navigation_button_04 -->
+						<div class="btn-group dropend">
+							<button type="button" class="btn btn btn-white dropdown-toggle" data-bs-toggle="dropdown"
+								aria-expanded="false">
+								법인설립
+							</button>
+							<ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+								<li><a class="dropdown-item" href="https://www.startbiz.go.kr/index.do">법인설립시스템</a>
+								</li>
+								<li><a class="dropdown-item" href="http://www.iros.go.kr/PMainJ.jsp">인터넷등기소</a>
+								</li>
+							</ul>
+						</div>
+
+						<!-- navigation_button_05 -->
+						<div class="btn-group dropend">
+							<button type="button" class="btn btn btn-white dropdown-toggle" data-bs-toggle="dropdown"
+								aria-expanded="false">
+								아웃소싱
+							</button>
+							<ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+								<li><a class="dropdown-item" href="https://kmong.com/">크몽</a></li>
+								<li><a class="dropdown-item" href="https://soomgo.com/">숨고</a></li>
+								<li><a class="dropdown-item" href="https://www.loud.kr/">라우드</a></li>
+								<li><a class="dropdown-item" href="https://www.wishket.com/">위시캣(새 창)</a></li>
+								<li><a class="dropdown-item" href="https://ojnara.com/">외주나라</a></li>
+								<li><a class="dropdown-item" href="https://www.freemoa.net/">프리모아(새 창)</a></li>
+							</ul>
+						</div>
+
+						<!-- navigation_button_06 -->
+						<div class="btn-group dropend">
+							<button type="button" class="btn btn btn-white dropdown-toggle" data-bs-toggle="dropdown"
+								aria-expanded="false">
+								크라우드펀딩
+							</button>
+							<ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+								<li><a class="dropdown-item" href="https://www.wadiz.kr/web/main">와디즈</a></li>
+								<li><a class="dropdown-item" href="https://tumblbug.com/">텀블벅</a></li>
+								<li><a class="dropdown-item" href="https://www.ycrowdy.com/">크라우디</a></li>
+							</ul>
+						</div>
+
+						<!-- navigation_button_07 -->
+						<div class="btn-group dropend">
+							<button type="button" class="btn btn btn-white dropdown-toggle" data-bs-toggle="dropdown"
+								aria-expanded="false">
+								세법 & 세금
+							</button>
+							<ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+								<li><a class="dropdown-item" href="https://taxlaw.nts.go.kr/index.do">국세법령정보시스템</a>
+								</li>
+								<li><a class="dropdown-item" href="https://www.law.go.kr/">국가법령정보센터(법제처)</a>
+								</li>
+								<li><a class="dropdown-item" href="https://likms.assembly.go.kr/law">국회법률정보시스템</a>
+								</li>
+								<li><a class="dropdown-item" href="http://www.kacpta.or.kr/">한국세무사회</a></li>
+								<li><a class="dropdown-item" href="https://www.hometax.go.kr/">홈택스</a></li>
+								<li><a class="dropdown-item" href="https://etax.seoul.go.kr/">E-tax</a></li>
+							</ul>
+						</div>
+
+
+						<!-- navigation_button_08 -->
+						<div class="btn-group dropend">
+							<button type="button" class="btn btn btn-white dropdown-toggle" data-bs-toggle="dropdown"
+								aria-expanded="false">
+								고용
+							</button>
+							<ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+								<li><a class="dropdown-item" href="https://www.moel.go.kr/index.do">고용노동부</a>
+								</li>
+								<li><a class="dropdown-item" href="https://www.ei.go.kr/ei/eih/cm/hm/main.do">고용보험</a>
+								</li>
+								<li><a class="dropdown-item" href="https://www.work.go.kr/seekWantedMain.do">워크넷</a>
+								</li>
+								<li><a class="dropdown-item" href="https://www.eps.go.kr/index.jsp">외국인고용관리시스템</a>
+								</li>
+							</ul>
+						</div>
+
+						<!-- navigation_button_09 -->
+						<div class="btn-group dropend">
+							<button type="button" class="btn btn btn-white dropdown-toggle" data-bs-toggle="dropdown"
+								aria-expanded="false">
+								인증
+							</button>
+							<ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+								<li><a class="dropdown-item" href="http://www.sbca.co.kr/fast/fast01.php">중소기업혁신인증</a>
+								</li>
+								<li><a class="dropdown-item" href="https://www.rnd.or.kr/user/main.do">기업부설연구소
+										신고관리시스템</a></li>
+								<li><a class="dropdown-item" href="http://sminfo.mss.go.kr/">중소기업현황정보시스템</a>
+								</li>
+								<li><a class="dropdown-item"
+										href="https://www.smes.go.kr/pageApplyCertificateVenture">벤처기업확인</a>
+								</li>
+								<li><a class="dropdown-item" href="http://www.wbiz.or.kr/index.do">여성기업확인</a>
+								</li>
+								<li><a class="dropdown-item" href="https://www.innobiz.net/">이노비즈</a></li>
+								<li><a class="dropdown-item" href="https://www.smes.go.kr/mainbiz/main.do">메인비즈</a>
+								</li>
+							</ul>
+						</div>
+
+						<!-- navigation_button_10 -->
+						<div class="btn-group dropend">
+							<button type="button" class="btn btn btn-white dropdown-toggle" data-bs-toggle="dropdown"
+								aria-expanded="false">
+								특허 & 지식재산권
+							</button>
+							<ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+								<li><a class="dropdown-item" href="http://www.kipris.or.kr/khome/main.jsp">특허정보검색서비스</a>
+								</li>
+								<li><a class="dropdown-item" href="https://www.riss.kr/index.do">논문검색</a></li>
+								<li><a class="dropdown-item" href="https://www.kipa.org/kipa/index.jsp">한국발명진흥회</a>
+								</li>
+								<li><a class="dropdown-item" href="http://www.koipa.re.kr/">한국지식재산보호원</a></li>
+								<li><a class="dropdown-item" href="https://www.designmap.or.kr/">디자인맵</a></li>
+								<li><a class="dropdown-item"
+										href="https://www.kescrow.or.kr/tems/jedo/jedo.do">기술자료임치센터</a>
+								</li>
+							</ul>
+						</div>
+
+						<!-- navigation_button_11 -->
+						<div class="btn-group dropend">
+							<button type="button" class="btn btn btn-white dropdown-toggle" data-bs-toggle="dropdown"
+								aria-expanded="false">
+								보증기금 & 금융
+							</button>
+							<ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+								<li><a class="dropdown-item" href="https://www.kibo.or.kr/index.do">기술보증기금</a>
+								</li>
+								<li><a class="dropdown-item" href="https://www.kodit.co.kr/index.do">신용보증기금</a>
+								</li>
+								<li><a class="dropdown-item" href="https://kinfa.or.kr/index.jsp">서민금융진흥원</a>
+								</li>
+								<li><a class="dropdown-item"
+										href="http://www.smbcs.co.kr/home/index.php">중소기업정책자금종합센터</a>
+								</li>
+							</ul>
+						</div>
+
+
+						<!-- navigation_button_12 -->
+						<div class="btn-group dropend">
+							<button type="button" class="btn btn btn-white dropdown-toggle" data-bs-toggle="dropdown"
+								aria-expanded="false">
+								투자
+							</button>
+							<ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+								<li><a class="dropdown-item" href="http://www.jointips.or.kr/">팁스타운</a></li>
+								<li><a class="dropdown-item"
+										href="https://ccei.creativekorea.or.kr/seoul/">서울창조경제혁신센터</a>
+								</li>
+								<li><a class="dropdown-item"
+										href="https://hubgongdeok.startup-plus.kr/default.do">서울창업허브</a></li>
+								<li><a class="dropdown-item" href="https://www.campus.co/intl/ko_kr/seoul/">구글캠퍼스(새
+										창)</a>
+								</li>
+								<li><a class="dropdown-item" href="https://dcamp.kr/">디캠프(새 창)</a></li>
+								<li><a class="dropdown-item" href="https://www.startupall.kr/">스타트업얼라이언스(새 창)</a>
+								</li>
+								<li><a class="dropdown-item" href="https://maru.org/">마루180</a></li>
+								<li><a class="dropdown-item" href="http://www.kvca.or.kr/">한국벤처캐피탈협회</a></li>
+								<li><a class="dropdown-item" href="http://fundfinder.k-vic.co.kr/rsh/rsh/RshMacFnd">모태펀드
+										출자펀드 찾기(새
+										창)</a></li>
+								<li><a class="dropdown-item" href="https://www.smes.go.kr/mna/index.do">중소벤처기업
+										M&A거래정보망</a></li>
+								<li><a class="dropdown-item"
+										href="https://www.vcs.go.kr/web/portal/investor/list">벤처투자매칭(새
+										창)</a>
+								</li>
+								<li><a class="dropdown-item" href="http://pitchit.org/">스타트업 투자 매칭 플랫폼</a></li>
+							</ul>
+						</div>
+
+
+						<!-- navigation_button_13 -->
+						<div class="btn-group dropend">
+							<button type="button" class="btn btn btn-white dropdown-toggle" data-bs-toggle="dropdown"
+								aria-expanded="false">
+								수출
+							</button>
+							<ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+								<li><a class="dropdown-item" href="http://www.origin.or.kr/">한국원산지정보원</a></li>
+								<li><a class="dropdown-item" href="https://www.kotra.or.kr/index.do">대한무역투자진흥공사</a>
+								</li>
+								<li><a class="dropdown-item" href="https://www.smes.go.kr/exportcenter/">중소기업수출지원센터</a>
+								</li>
+								<li><a class="dropdown-item"
+										href="https://www.smes.go.kr/sme-expo/site/main/home.do">중소기업
+										해외전시포털(새
+										창)</a></li>
+								<li><a class="dropdown-item" href="https://kr.gobizkorea.com/kruser/main.do">Gobiz
+										KOREA(새 창)</a></li>
+							</ul>
+						</div>
+
+						<!-- navigation_button_14 -->
+						<div class="btn-group dropend">
+							<button type="button" class="btn btn btn-white dropdown-toggle" data-bs-toggle="dropdown"
+								aria-expanded="false">
+								기타
+							</button>
+							<ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+								<li><a class="dropdown-item" href="https://onoffmix.com/">온오프믹스(새 창)</a></li>
+								<li><a class="dropdown-item" href="http://glance.media/">Startup Weekly 구독신청</a>
+
+							</ul>
+						</div>
+						<!-- End of Navigation -->
+					</div>
+				</nav>
+			</aside>
+		</div>
+
+		<div class="main contents_container">
+			<section id="contents">
+
+				<!-- <embed class="embeded-content" type="text/html" src="https://www.loud.kr/"> -->
+				<!-- 캐러셀:슬라이드 -->
+				<div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+					<div class="carousel-inner">
+						<div class="carousel-item active">
+							<img src="/images/books.avif" class="d-block w-100" alt="...">
+						</div>
+						<div class="carousel-item active">
+							<img src="/images/1.jpg" class="d-block w-100" alt="...">
+						</div>
+						<div class="carousel-item active">
+							<img src="/images/2.jpg" class="d-block w-100" alt="...">
+						</div>
+						<div class="carousel-item active">
+							<img src="/images/3.jpg" class="d-block w-100" alt="...">
+						</div>
+					</div>
+					<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+						data-bs-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Previous</span>
+					</button>
+					<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+						data-bs-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Next</span>
+					</button>
+				</div>
+			</section>
+		</div>
+
+		<div class="main sidebar_util_container">
+			
+			<aside class="sidebar_util">
+
+				<nav aria-label="Page navigation example">
+					<ul class="pagination justify-content-center">
+						<li class="page-item"><a class="page-link" href="#" id="weather">날씨</a></li>
+						<li class="page-item"><a class="page-link" href="#" id="map">지도</a></li>
+						<li class="page-item"><a class="page-link" href="#" id="exchangeRate">환율</a></li>
+						<li class="page-item"><a class="page-link" href="#" id="IndustryFlow">동향</a></li>
+						<li class="page-item"><a class="page-link" href="#" id="inquiry">문의</a></li>
+					</ul>
+				</nav>
+
+				<div class="sidebar_title">
+					<h3>현재 서울 날씨</h3>
+					<table class="content_table">
+						<thead>
+						<tr>
+							<th>항목</th>
+							<th>값</th>
+						</tr>
+						</thead>
+						<tbody>
+						<!-- Map 타입의 iterator 반복 -->
+						<tr th:each="entry: ${weather}">
+							<td th:text="${entry.key}"></td>
+							<td th:text="${entry.value}"></td>
+						</tr>
+						</tbody>
+					</table>
+
+				</div>
+
+				<section class="side_contents inquiry" style="display:none">
+					<h3>문의하기</h3>
+					<div class="side_contents mb-3">
+						<label for="exampleFormControlInput1" class="form-label">Email 주소</label>
+						<input type="email" class="form-control" id="exampleFormControlInput1"
+							placeholder="name@example.com">
+					</div>
+					<div class="side_contents mb-3">
+						<label for="exampleFormControlTextarea1" class="form-label">문의사항</label>
+						<textarea class="form-control" id="exampleFormControlTextarea1" rows="6"></textarea>
+					</div>
+					<div class="side_contents mb-3">
+						<button	type="submit" id="submit" name="submit">보내버리기</button>
+					</div>
+				</section>
+
+			</aside>
+
+		</div>
+
+	</section>
+	<footer>
+		<div class="footer_area">
+			<section class="contact-info">
+				<p>
+					&lt;Copyright 2024. Davidev. All rights reseved.&gt;
+				</p>
+			</section>
+		</div>
+	</footer>
+</body>
+
+</html>
