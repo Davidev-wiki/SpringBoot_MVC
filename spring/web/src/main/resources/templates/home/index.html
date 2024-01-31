@@ -80,10 +80,7 @@
 								공고 검색
 							</button>
 							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="https://www.k-startup.go.kr/"
-										target="_blank">k-startup(새
-										창)</a>
-								</li>
+								<li><a class="dropdown-item" href="https://www.k-startup.go.kr/" target="_blank">k-startup(새 창)</a></li>
 								<li><a class="dropdown-item"
 										href="https://www.bizinfo.go.kr/see/seea/selectSEEA100.do">기업마당</a>
 								</li>
@@ -106,13 +103,9 @@
 								창업 인사이트
 							</button>
 							<ul class="dropdown-menu">
-								<li><a class="dropdown-item"
-										href="https://www.k-startup.go.kr/edu/home/main/index">창업에듀(새
-										창)</a>
+								<li><a class="dropdown-item" href="https://www.k-startup.go.kr/edu/home/main/index">창업에듀(새 창)</a>
 								</li>
-<!--
-								<li><a class="dropdown-item" href="http://startup-wiki.kr/">스타트업 용어사전</a></li>
--->
+								<li><a class="dropdown-item" href="http://startup-wiki.kr/">스타트업 용어사전(새 창)</a></li>
 								<li><a class="dropdown-item" href="https://platum.kr/">플래텀</a></li>
 								<li><a class="dropdown-item" href="https://besuccess.com/">beSUCCESS</a></li>
 								<li><a class="dropdown-item" href="http://www.venturesquare.net/">벤처스퀘어</a></li>
@@ -424,23 +417,24 @@
 				</nav>
 
 				<div class="sidebar_title">
-					<h3>현재 서울 날씨</h3>
-					<table class="content_table">
-						<thead>
-						<tr>
-							<th>항목</th>
-							<th>값</th>
-						</tr>
-						</thead>
-						<tbody>
-						<!-- Map 타입의 iterator 반복 -->
-						<tr th:each="entry: ${weather}">
-							<td th:text="${entry.key}"></td>
-							<td th:text="${entry.value}"></td>
-						</tr>
-						</tbody>
-					</table>
-
+					<h3 id="sb_title"></h3>
+					<div class="table-wrapper">
+						<table class="content_table" style="display: none">
+							<thead>
+							<tr>
+								<th>항목</th>
+								<th>값</th>
+							</tr>
+							</thead>
+							<tbody>
+							<!-- Map 타입의 iterator 반복 -->
+							<tr th:each="entry: ${weather}">
+								<td th:text="${entry.key}"></td>
+								<td th:text="${entry.value}"></td>
+							</tr>
+							</tbody>
+						</table>
+					</div>
 				</div>
 
 				<section class="side_contents inquiry" style="display:none">

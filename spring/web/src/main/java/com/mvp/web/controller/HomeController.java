@@ -22,7 +22,13 @@ public class HomeController {
     }
 
     @GetMapping("/")
-    public String home(Model model) {
+    public String home() {
+        // 뷰의 이름을 반환
+        return "home/index";
+    }
+
+    @GetMapping("/weather")
+    public String getWeather (Model model) {
         // 현재 날짜와 시간
         LocalDateTime currentDateTime = LocalDateTime.now();
 
@@ -42,10 +48,8 @@ public class HomeController {
         HashMap resultMap = openApiRequest.fetchData(formattedDate, time, nx, ny);
         model.addAttribute("weather", resultMap);
         System.out.println("weather resultMap : " + resultMap);
-        // 뷰의 이름을 반환
         return "home/index";
     }
-
 
     private static String getString(LocalDateTime currentDateTime, int currentHour) {
         int currentMinute = currentDateTime.getMinute();
