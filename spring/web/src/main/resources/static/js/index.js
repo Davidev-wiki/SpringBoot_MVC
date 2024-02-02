@@ -1,3 +1,5 @@
+'use strict';
+
 /* 연결 불가 링크 리스트 */
 const DISCONNECT = [
     'https://www.k-startup.go.kr/',
@@ -19,11 +21,11 @@ const DISCONNECT = [
 ]
 
 $(document).ready(async function(){
-
+    // 우측 메뉴영역 초기화
     initArea();
+
     const resultMessage = await requestWeather();
     setWeather("weather", resultMessage);
-
 
     /* 좌측 메뉴링크 버튼 클릭 이벤트 */
     const dropdown_links = document.querySelectorAll(".dropdown-item");
@@ -39,11 +41,7 @@ $(document).ready(async function(){
 
         if (new_window_yn) {
             event.target.setAttribute("target", "_blank");
-            //console.log('새 창으로 연결됩니다.');
-            return;
         } else {
-            //console.log('현재 창으로 연결합니다.');
-
             event.preventDefault();
             const $element = document.createElement("embed");
 
@@ -64,7 +62,7 @@ $(document).ready(async function(){
     }
 
 
-    /* 우측 사이드메뉴 버튼 클릭 이벤트*/
+    /* 우측 유틸영역 버튼 클릭 이벤트*/
     const sideMenuBar = document.querySelectorAll(".page-item");
     sideMenuBar.forEach(function(item){
         item.addEventListener("click", change);
@@ -74,45 +72,33 @@ $(document).ready(async function(){
 
         initArea();
 
-        // ID값으로 분기 처리
+        // ID값으로 메서드 분기
         const theme = event.target.id;
         let resultMessage = "";
 
         switch (theme) {
             case "weather":
                 resultMessage = await requestWeather();
-                console.log('weather 종료');
+                setWeather(theme, resultMessage);
                 break;
             case "map":
                 kakao.maps.load(() => {
                     requestMap();
                 });
-                console.log('map 종료');
                 break;
             case "exchangeRate":
-                // requestExchageRate()
-                resultMessage = "";
-                console.log('exchangeRate 종료');
-
-                break;
-            case "IndustryFlow":
-                // requestIndustryFlow()
-                resultMessage = "";
-                console.log('IndustryFlow 종료');
-
+                requestExchangeRate();
                 break;
             case "inquiry":
-                resultMessage = "";
-                console.log('inquiry 종료');
-
+                console.log('Inquiry 진입');
+                requestInquiry();
                 break;
         }
     }
-
-    /* 문의 버튼만 문의 컨텐츠가 보이게 처리. */
+    /* 우측 유틸영역 초기화 */
     function initArea() {
         $(".sidebar_content").empty();
-
+        $(".inquirySection").hide();
         const newTitle = $("<h3>");
         newTitle.attr("id", "content-title");
         newTitle.text("");
@@ -127,7 +113,7 @@ $(document).ready(async function(){
         console.log("영역이 초기화 되었습니다.");
     }
 
-    /* 날씨 조회 버튼 클릭 이벤트 */
+    /* OpenWeatherMap 날씨 요청 메서드 */
     async function requestWeather() {
         console.log("Weather API requested!")
         const key = "23a93b0b3bafbd17bc6bfaa741906d2d";
@@ -136,7 +122,7 @@ $(document).ready(async function(){
             const result = await fetch(requestLocation)
             const jsonResult = await result.json();
 
-            let locationSet= new Object();
+            let locationSet= {};
             locationSet = findLocation(locationSet, jsonResult[0]);
 
             const resultMessage = await getWeather(locationSet.lat, locationSet.lon, key);
@@ -149,28 +135,7 @@ $(document).ready(async function(){
 
     }
 
-    function requestMap() {
-        /* key : 8bb01530fa66d976bcf0c13b83203cff */
-        // 현재의 위도와 경도를 가져온 후 api 호출
-        navigator.geolocation.getCurrentPosition((position) => {
-            const lat = position.coords.latitude;
-            const lon = position.coords.longitude;
-
-            const mapContainer = document.getElementById('content-wrapper'), // 지도를 표시할 div
-                mapOption = {
-                    center: new kakao.maps.LatLng(lat, lon), // 지도의 중심좌표
-                    level: 3 // 지도의 확대 레벨
-                };
-            // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
-            const map = new kakao.maps.Map(mapContainer, mapOption);
-        });
-    }
-
-    /* 문의 제출 버튼 클릭 이벤트 */
-    $("#submit").click(function(){
-        alert("보내버렸슈..")
-    });
-
+    /* 위도 경도 매핑*/
     function findLocation(object, info) {
         object.country = info.country;
         object.city = info.name;
@@ -180,6 +145,7 @@ $(document).ready(async function(){
         return object;
     }
 
+    /* 날씨 호출 메서드 */
     async function getWeather(lat, lon, key) {
         const requestWeather =
             `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${key}&units=metric&lang=kr`;
@@ -197,20 +163,126 @@ $(document).ready(async function(){
             const temp = weatherData.main.temp; // 현재기온
             const desciption = weatherData.weather[0].description;
 
-            const message =
-                `현재 위치는 ${locName} 입니다! \n 오늘의 최고기온은 ${temp_Max}도, 최저기온은 ${temp_Min}도 입니다! \n 현재 온도는 ${temp} 도 입니다! \n 현재 날씨는 ${desciption} 입니다!`;
-
-            return message;
+            return `현재 위치는 ${locName} 입니다!<br> 
+                 오늘의 최고기온은 ${temp_Max}도,<br> 
+                 최저기온은 ${temp_Min}도 입니다!<br>
+                 현재 온도는 ${temp} 도 입니다!<br>
+                 현재 날씨는 ${desciption} 입니다!`;
         } catch(error) {
             console.log("error in findLocation(object, info) >>> : " + error)
         }
     }
 
-
+    /* 날씨 정보 세팅 메서드 */
     function setWeather (title, message) {
         $("#content-title").text(title);
-        $("<p>").text(message).appendTo("#content-wrapper");
+        $("#content-wrapper").html(message);
     }
 
-});
+    /* 카카오지도 요청 메서드 */
+    function requestMap() {
+        /* key : 8bb01530fa66d976bcf0c13b83203cff */
+        // 현재의 위도와 경도를 가져온 후 api 호출
+        navigator.geolocation.getCurrentPosition((position) => {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
 
+            const mapContainer = document.getElementById('content-wrapper'), // 지도를 표시할 div
+                mapOption = {
+                    center: new kakao.maps.LatLng(lat, lon), // 지도의 중심좌표
+                    level: 3 // 지도의 확대 레벨
+                };
+            // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+            new kakao.maps.Map(mapContainer, mapOption);
+        });
+    }
+
+    /* 한국수출입은행 환율 요청 메서드 */
+    async function requestExchangeRate() {
+
+        const url = "https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/krw.json";
+        try {
+            const response = await fetch(url);
+            let result = await response.json();
+            result = getCurrency(result);
+            setCurrency(result);
+        } catch (error) {
+            console.error('자료를 받아오는데 에러가 발생했어요! >>> :', error);
+        }
+
+    }
+
+    /* 날짜 포맷 생성 메서드 ex)20240202 */
+    /*function getCurrentDate() {
+        // 현재 시간과 날짜 객체 생성
+        const currentDate = new Date();
+        const currentHour = currentDate.getHours();
+
+        // 만약 현재 시간이 11시 이전이라면, 이전 날짜로 설정
+        if (currentHour < 11) {
+            currentDate.setDate(currentDate.getDate() - 1);
+        }
+
+        // 년, 월, 일을 가져와서 문자열로 조합
+        const year = currentDate.getFullYear();
+        const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
+        const day = currentDate.getDate().toString().padStart(2, '0');
+
+        // 문자열로 조합한 날짜 출력
+        const formattedDate = `${year}${month}${day}`;
+        console.log(formattedDate);
+
+        return formattedDate;
+    }*/
+
+    function getCurrency(result) {
+        // 1원 대비 통화가치 (usd, jpy, cny, eur)
+        const krwCurrency = result.krw;
+        const currency = {};
+
+        const krwToUsd = krwCurrency.usd; // 1원에 해당하는 달러 : 현재 0.75
+        const UsdToKrw = 1 / krwToUsd; // 1달러에 해당하는 원 : 현재 1331.1
+
+        const krwToJpy = krwCurrency.jpy; // 1원에 해당하는 엔 :
+        const jpyToKrw = 1 / krwToJpy; // 1달러에 해당하는 원 : 현재 1331.1
+
+        const krwToCny = krwCurrency.cny; // 1원에 해당하는 달러 : 현재 0.75
+        const cnyToKrw = 1 / krwToCny; // 1달러에 해당하는 원 : 현재 1331.1
+
+        const krwToEur = krwCurrency.eur; // 1원에 해당하는 엔 :
+        const eurToKrw = 1 / krwToEur; // 1달러에 해당하는 원 : 현재 1331.1
+
+        currency.usd = UsdToKrw.toFixed(1);
+        currency.eur = eurToKrw.toFixed(1);
+        currency.cny = cnyToKrw .toFixed(1);
+        currency.jpy = (jpyToKrw * 100).toFixed(1);
+
+        return currency;
+    }
+
+    function setCurrency(result) {
+        const title = "오늘의 환율 정보";
+        const message = `10,000원으로 교환한 비율입니다!<br>
+        1달러 = ${result.usd} 원<br>
+        1유로 = ${result.eur} 원<br>
+        100위안 = ${result.cny} 원<br>
+        100엔 = ${result.jpy} 원<br>`;
+
+        $("#content-title").text(title);
+        $("#content-wrapper").html(message);
+    }
+
+    /* 문의사항 보내기 화면 세팅 */
+    function requestInquiry(){
+        $("#content-wrapper").removeAttr("style");
+        const title = "문의하기";
+        $(".inquirySection").show();
+        $("#content-title").text(title);
+    }
+
+    /* 문의 제출 버튼 클릭 이벤트 */
+    $("#submit").click(function(){
+        alert("보내버렸슈..")
+    });
+
+});

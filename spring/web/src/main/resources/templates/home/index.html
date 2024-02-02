@@ -47,9 +47,9 @@
 
 					<div class="offcanvas-body">
 						<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-							<img src="images/qrcode.jpg">
+							<img src="images/qrcode.jpg" alt="qrcode">
 							<li class="nav-item">
-								前) 창업보육전문매니저</a>
+								<a>前) 창업보육전문매니저</a>
 							</li>
 							<li class="nav-item">
 								<address>
@@ -117,7 +117,6 @@
 								<li><a class="dropdown-item" href="https://goventureforum.com/forum_replay/">GO벤처포럼</a>
 								</li>
 								<li><a class="dropdown-item" href="https://thevc.kr/">한국 스타트업 투자 현황</a></li>
-								</li>
 							</ul>
 						</div>
 
@@ -411,7 +410,9 @@
 						<li class="page-item"><a class="page-link" href="#" id="weather">날씨</a></li>
 						<li class="page-item"><a class="page-link" href="#" id="map">지도</a></li>
 						<li class="page-item"><a class="page-link" href="#" id="exchangeRate">환율</a></li>
+<!--
 						<li class="page-item"><a class="page-link" href="#" id="IndustryFlow">동향</a></li>
+-->
 						<li class="page-item"><a class="page-link" href="#" id="inquiry">문의</a></li>
 					</ul>
 				</nav>
@@ -422,6 +423,20 @@
 					<div id="content-wrapper"></div>
 -->
 				</div>
+				<section class="side_contents inquirySection" style="display:none">
+					<div class="side_contents mb-3">
+						<label for="exampleFormControlInput1" class="form-label">Email 주소</label>
+						<input type="email" class="form-control" id="exampleFormControlInput1"
+							   placeholder="name@example.com">
+					</div>
+					<div class="side_contents mb-3">
+						<label for="exampleFormControlTextarea1" class="form-label">문의사항</label>
+						<textarea class="form-control" id="exampleFormControlTextarea1" rows="6"></textarea>
+					</div>
+					<div class="side_contents mb-3">
+						<button	type="submit" id="submit" name="submit">보내버리기</button>
+					</div>
+				</section>
 			</aside>
 
 		</div>
@@ -440,8 +455,8 @@
 	<table class="content_table" style="display: none">
 							<thead>
 							<tr>
-								<th>항목</th>
-								<th>값</th>
+								<th></th>
+								<th></th>
 							</tr>
 							</thead>
 							<tbody>
@@ -452,23 +467,7 @@
 	</tbody>
 	</table>
 </template>
-	<template>
-	<section class="side_contents inquiry" style="display:none">
-		<h3>문의하기</h3>
-		<div class="side_contents mb-3">
-			<label for="exampleFormControlInput1" class="form-label">Email 주소</label>
-			<input type="email" class="form-control" id="exampleFormControlInput1"
-				   placeholder="name@example.com">
-		</div>
-		<div class="side_contents mb-3">
-			<label for="exampleFormControlTextarea1" class="form-label">문의사항</label>
-			<textarea class="form-control" id="exampleFormControlTextarea1" rows="6"></textarea>
-		</div>
-		<div class="side_contents mb-3">
-			<button	type="submit" id="submit" name="submit">보내버리기</button>
-		</div>
-	</section>
-	</template>
+
 </body>
 
 </html>
