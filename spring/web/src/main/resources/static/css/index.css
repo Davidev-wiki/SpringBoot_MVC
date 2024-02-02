@@ -40,8 +40,9 @@
 }
 
 /* 오른쪽 사이드바 */
-.sidebar_util_container, .side_contents {
+.sidebar_util_container, #content-wrapper, .side_contents {
     padding: 2%;
+    margin: 1% auto;
     text-align: center;
 }
 
@@ -71,4 +72,13 @@ footer {
 
 .footer_area {
     padding: 1%;
+}
+
+.side_contents {
+    display: none;
+}
+
+#noteList{
+    max-height: 200px;
+    overflow: auto;
 }

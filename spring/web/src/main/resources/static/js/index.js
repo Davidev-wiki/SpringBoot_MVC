@@ -20,7 +20,7 @@ const DISCONNECT = [
     "http://startup-wiki.kr"
 ]
 
-$(document).ready(async function(){
+$(document).ready(async function () {
     // 우측 메뉴영역 초기화
     initArea();
 
@@ -64,7 +64,7 @@ $(document).ready(async function(){
 
     /* 우측 유틸영역 버튼 클릭 이벤트*/
     const sideMenuBar = document.querySelectorAll(".page-item");
-    sideMenuBar.forEach(function(item){
+    sideMenuBar.forEach(function (item) {
         item.addEventListener("click", change);
     });
 
@@ -89,16 +89,18 @@ $(document).ready(async function(){
             case "exchangeRate":
                 requestExchangeRate();
                 break;
+            case "memo":
+                requestMemo();
+                break;
             case "inquiry":
-                console.log('Inquiry 진입');
                 requestInquiry();
                 break;
         }
     }
+
     /* 우측 유틸영역 초기화 */
     function initArea() {
         $(".sidebar_content").empty();
-        $(".inquirySection").hide();
         const newTitle = $("<h3>");
         newTitle.attr("id", "content-title");
         newTitle.text("");
@@ -110,26 +112,27 @@ $(document).ready(async function(){
         newDiv.css("height", "250px");
         $(".sidebar_content").append(newDiv);
 
-        console.log("영역이 초기화 되었습니다.");
+        $(".inquirySection").hide();
+        $(".memoryNote").hide();
+        $("#noteList").empty();
+
     }
 
     /* OpenWeatherMap 날씨 요청 메서드 */
     async function requestWeather() {
-        console.log("Weather API requested!")
         const key = "23a93b0b3bafbd17bc6bfaa741906d2d";
         const requestLocation = `http://api.openweathermap.org/geo/1.0/direct?q=Seoul&limit=5&appid=${key}`;
-        try{
+        try {
             const result = await fetch(requestLocation)
             const jsonResult = await result.json();
 
-            let locationSet= {};
+            let locationSet = {};
             locationSet = findLocation(locationSet, jsonResult[0]);
 
             const resultMessage = await getWeather(locationSet.lat, locationSet.lon, key);
-            console.log("resultMessage >>> : " + resultMessage);
             return resultMessage;
         } catch (error) {
-            console.error('Error in : requestWeather() >>> : '+ error);
+            console.error('Error in : requestWeather() >>> : ' + error);
             return "";
         }
 
@@ -149,7 +152,7 @@ $(document).ready(async function(){
     async function getWeather(lat, lon, key) {
         const requestWeather =
             `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${key}&units=metric&lang=kr`;
-        try{
+        try {
             const getWeather = await fetch(requestWeather);
             const weatherData = await getWeather.json();
 
@@ -168,13 +171,13 @@ $(document).ready(async function(){
                  최저기온은 ${temp_Min}도 입니다!<br>
                  현재 온도는 ${temp} 도 입니다!<br>
                  현재 날씨는 ${desciption} 입니다!`;
-        } catch(error) {
+        } catch (error) {
             console.log("error in findLocation(object, info) >>> : " + error)
         }
     }
 
     /* 날씨 정보 세팅 메서드 */
-    function setWeather (title, message) {
+    function setWeather(title, message) {
         $("#content-title").text(title);
         $("#content-wrapper").html(message);
     }
@@ -213,6 +216,7 @@ $(document).ready(async function(){
     }
 
     /* 날짜 포맷 생성 메서드 ex)20240202 */
+
     /*function getCurrentDate() {
         // 현재 시간과 날짜 객체 생성
         const currentDate = new Date();
@@ -254,7 +258,7 @@ $(document).ready(async function(){
 
         currency.usd = UsdToKrw.toFixed(1);
         currency.eur = eurToKrw.toFixed(1);
-        currency.cny = cnyToKrw .toFixed(1);
+        currency.cny = cnyToKrw.toFixed(1);
         currency.jpy = (jpyToKrw * 100).toFixed(1);
 
         return currency;
@@ -272,16 +276,42 @@ $(document).ready(async function(){
         $("#content-wrapper").html(message);
     }
 
-    /* 문의사항 보내기 화면 세팅 */
-    function requestInquiry(){
+    function requestMemo() {
         $("#content-wrapper").removeAttr("style");
+        $(".side_contents").show();
+        $(".inquirySection").hide(); // 문의하기 숨김
+
+        const title = "메모리노트";
+        $("#content-title").text(title);
+
+        const note = localStorage.getItem("note");
+        $("#noteList").append($("<li>").text(note));
+    }
+
+    $("#save").click(function(){
+        localStorage.setItem("note", $("#memoryNote").val());
+        $("#memoryNote").val('').focus();
+        requestMemo();
+    });
+
+    $("#remove").click(function(){
+        localStorage.setItem("note", "");
+        $("#noteList").empty();
+        $("#memoryNote").val('').focus();
+    });
+
+    /* 문의사항 보내기 화면 세팅 */
+    function requestInquiry() {
+        $("#content-wrapper").removeAttr("style");
+        $(".side_contents").show();
+        $(".memoryNote").hide(); // 메모리노트 숨김
+
         const title = "문의하기";
-        $(".inquirySection").show();
         $("#content-title").text(title);
     }
 
     /* 문의 제출 버튼 클릭 이벤트 */
-    $("#submit").click(function(){
+    $("#submit").click(function () {
         alert("보내버렸슈..")
     });
 
