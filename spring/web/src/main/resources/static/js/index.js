@@ -20,21 +20,57 @@ const DISCONNECT = [
     "http://startup-wiki.kr"
 ]
 
-$(document).ready(async function () {
-    // 우측 메뉴영역 초기화
-    initArea();
+$(document).ready(async function (callback) {
 
-    const resultMessage = await requestWeather();
-    setWeather("weather", resultMessage);
+    /* 상단 네비게이션바 버튼 클릭 이벤트*/
+    $(".nav-link").click(function(event) {
+        // 기존 content 영역 초기화
+        $("#contents").empty();
 
-    /* 좌측 메뉴링크 버튼 클릭 이벤트 */
+        //
+        const nav_id = event.target.id;
+        switch (nav_id) {
+            case "freeBoard":
+                getBoard();
+                console.log("freeBoard를 클릭했습니다.");
+                break;
+            case "mentoChat":
+                console.log("mentoChat을 클릭했습니다.");
+                break;
+            case "roremipsum1":
+                console.log("roremipsum1을 클릭했습니다.");
+                break;
+            case "roremipsum2":
+                console.log("roremipsum2를 클릭했습니다.");
+                break;
+        }
+    });
+
+    /* 자유게시판 클릭시 게시판 화면 조회 */
+    async function getBoard() {
+        try {
+            const result = await fetch("/board");
+            const boardHtml = await result.text(); // HTML을 텍스트로 추출
+
+            console.log(boardHtml); // 또는 실제로 사용할 데이터의 처리를 여기에 추가
+            $("#contents").html(boardHtml);
+            console.log("-- getBoard() 종료 --");
+        } catch (error) {
+            console.error("게시판을 받아오는 중 에러가 발생했어요!", error);
+        }
+    }
+
+
+
+
+    /* 좌측 메뉴 버튼 클릭 이벤트 */
     const dropdown_links = document.querySelectorAll(".dropdown-item");
     dropdown_links.forEach(function (item) {
         item.addEventListener("click", display);
     });
 
+    /* embeded 화면을 콘텐츠 영역에 표시 */
     function display(event) {
-
         // 메뉴 타겟 링크 이벤트리스너 세팅
         const link = event.target.href;
         const new_window_yn = DISCONNECT.includes(link); // disconnec에 있는지 여부 체크
@@ -61,6 +97,11 @@ $(document).ready(async function () {
 
     }
 
+
+    // 우측 메뉴영역 초기화
+    initArea();
+    const resultMessage = await requestWeather();
+    setWeather("weather", resultMessage);
 
     /* 우측 유틸영역 버튼 클릭 이벤트*/
     const sideMenuBar = document.querySelectorAll(".page-item");
@@ -196,7 +237,37 @@ $(document).ready(async function () {
                     level: 3 // 지도의 확대 레벨
                 };
             // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
-            new kakao.maps.Map(mapContainer, mapOption);
+            const map = new kakao.maps.Map(mapContainer, mapOption);
+
+            // 지도 타입 변경 컨트롤을 생성한다
+            const mapTypeControl = new kakao.maps.MapTypeControl();
+
+            // 지도의 상단 우측에 지도 타입 변경 컨트롤을 추가한다
+            map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+
+            // 지도에 확대 축소 컨트롤을 생성한다
+            const zoomControl = new kakao.maps.ZoomControl();
+
+            // 지도의 우측에 확대 축소 컨트롤을 추가한다
+            map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+
+            // 지도에 마커를 생성하고 표시한다
+            const marker = new kakao.maps.Marker({
+                position: new kakao.maps.LatLng(37.56406, 126.99810), // 마커의 좌표
+                draggable : true, // 마커를 드래그 가능하도록 설정한다
+                map: map // 마커를 표시할 지도 객체
+            });
+
+            // 마커에 dragstart 이벤트 등록
+            kakao.maps.event.addEventListener(marker, 'dragstart', function () {
+                console.log('마커에 dragstart 이벤트가 발생했습니다!');
+            });
+
+            // 마커에 dragend 이벤트 등록
+            kakao.maps.event.addEventListener(marker, 'dragend', function() {
+                console.log('마커에 dragend 이벤트가 발생했습니다!');
+            });
+
         });
     }
 
@@ -266,7 +337,7 @@ $(document).ready(async function () {
 
     function setCurrency(result) {
         const title = "오늘의 환율 정보";
-        const message = `10,000원으로 교환한 비율입니다!<br>
+        const message = `
         1달러 = ${result.usd} 원<br>
         1유로 = ${result.eur} 원<br>
         100위안 = ${result.cny} 원<br>

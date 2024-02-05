@@ -31,8 +31,23 @@
     <nav class="navbar navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
 
-            <a class="navbar-brand" href="#">MVP Guide</a>
-
+            <a class="navbar-brand" href="/">MVP Guide</a>
+            <div class="nav-list top-nav">
+                <ul class="nav nav-tabs justify-content-end">
+                    <li class="nav-item">
+                        <a class="nav-link" id="freeBoard" href="#">자유게시판</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="mentoChat" href="#">멘토챗</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="roremipsum1" href="#">로렘입숨1</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="roremipsum2" href="#">로렘입숨2</a>
+                    </li>
+                </ul>
+            </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
                     data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -42,24 +57,65 @@
                  aria-labelledby="offcanvasNavbarLabel">
 
                 <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">운영자에게 고마움 전하기</h5>
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">유틸리티</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
 
                 <div class="offcanvas-body">
-                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                        <img src="images/qrcode.jpg" alt="qrcode">
-                        <li class="nav-item">
-                            <a>前) 창업보육전문매니저</a>
-                        </li>
-                        <li class="nav-item">
-                            <address>
-                                <p>
-                                    Email: <a href="mailto:contact@example.com">davidev@kakao.com</a></p>
-                            </address>
-                        </li>
-                        <li class="nav-item dropdown"></li>
-                    </ul>
+<!--
+                    <img src="images/qrcode.jpg" alt="qrcode">
+-->
+                    <!-- cloned area-->
+                    <div class="main sidebar_util_container">
+                        <aside class="sidebar_util">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justify-content-center">
+                                    <li class="page-item"><a class="page-link" href="#" id="weather">날씨</a></li>
+                                    <li class="page-item"><a class="page-link" href="#" id="map">지도</a></li>
+                                    <li class="page-item"><a class="page-link" href="#" id="exchangeRate">환율</a></li>
+                                    <li class="page-item"><a class="page-link" href="#" id="memo">메모</a></li>
+                                    <li class="page-item"><a class="page-link" href="#" id="inquiry">문의</a></li>
+                                </ul>
+                            </nav>
+                            <div class="sidebar_content">
+
+                            </div>
+                            <section class="side_contents memoryNote">
+                                <div class="side_contents mb-3">
+                                    <fieldset>
+                                        <legend>
+                                            <h5>현재 등록된 메모</h5>
+                                        </legend>
+                                        <ul id="noteList" style="max-height:300px">
+                                        </ul>
+                                    </fieldset>
+                                </div>
+                                <div class="side_contents mb-3">
+                                    <label for="memoryNote" class="form-label"></label>
+                                    <textarea class="form-control" id="memoryNote" rows="6"></textarea>
+                                </div>
+                                <div class="side_contents mb-3">
+                                    <button type="button" id="save" name="save">저장하기</button>
+                                    <button type="button" id="remove" name="remove">메모지우기</button>
+                                </div>
+                            </section>
+                            <section class="side_contents inquirySection">
+                                <div class="side_contents mb-3">
+                                    <label for="exampleFormControlInput1" class="form-label">Email 주소</label>
+                                    <input type="email" class="form-control" id="exampleFormControlInput1"
+                                           placeholder="name@example.com">
+                                </div>
+                                <div class="side_contents mb-3">
+                                    <label for="exampleFormControlTextarea1" class="form-label">문의사항</label>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="6"></textarea>
+                                </div>
+                                <div class="side_contents mb-3">
+                                    <button type="submit" id="submit" name="submit">보내버리기</button>
+                                </div>
+                            </section>
+                        </aside>
+                    </div>
+                    <!-- cloned area-->
                 </div>
             </div>
         </div>
@@ -372,7 +428,6 @@
 
     <div class="main contents_container">
         <section id="contents">
-
             <!-- <embed class="embeded-content" type="text/html" src="https://www.loud.kr/"> -->
             <!-- 캐러셀:슬라이드 -->
             <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
@@ -404,10 +459,9 @@
         </section>
     </div>
 
+    <!--
     <div class="main sidebar_util_container">
-
         <aside class="sidebar_util">
-
             <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-center">
                     <li class="page-item"><a class="page-link" href="#" id="weather">날씨</a></li>
@@ -417,14 +471,9 @@
                     <li class="page-item"><a class="page-link" href="#" id="inquiry">문의</a></li>
                 </ul>
             </nav>
-
             <div class="sidebar_content">
-                <!--				우측 메뉴바 초기화시 요소 생성 영역 by js
-                                    <h3 id="content-title"></h3>
-                                    <div id="content-wrapper"></div>
-                -->
-            </div>
 
+            </div>
 			<section class="side_contents memoryNote">
 				<div class="side_contents mb-3">
                     <fieldset>
@@ -444,7 +493,6 @@
                     <button type="button" id="remove" name="remove">메모지우기</button>
                 </div>
 			</section>
-
             <section class="side_contents inquirySection">
                 <div class="side_contents mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Email 주소</label>
@@ -459,10 +507,9 @@
                     <button type="submit" id="submit" name="submit">보내버리기</button>
                 </div>
             </section>
-
         </aside>
-
     </div>
+    -->
 
 </section>
 <footer>
