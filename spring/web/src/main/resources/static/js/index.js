@@ -20,31 +20,47 @@ const DISCONNECT = [
     "http://startup-wiki.kr"
 ]
 
-$(document).ready(async function (callback) {
+$(document).ready(async function() {
 
     /* 상단 네비게이션바 버튼 클릭 이벤트*/
     $(".nav-link").click(function(event) {
         // 기존 content 영역 초기화
-        $("#contents").empty();
-
+        $("#contents").show().empty();
+        $(".inquirySection").hide();
         //
         const nav_id = event.target.id;
         switch (nav_id) {
+            case "currentIssue":
+                console.log("currentIssue를 클릭했습니다.");
+                currentIssue();
+                break;
+            case "mentoChat":
+                console.log("mentoChat을 클릭했습니다.");
+                mentoChat();
+                break;
             case "freeBoard":
                 getBoard();
                 console.log("freeBoard를 클릭했습니다.");
                 break;
-            case "mentoChat":
-                console.log("mentoChat을 클릭했습니다.");
-                break;
-            case "roremipsum1":
-                console.log("roremipsum1을 클릭했습니다.");
-                break;
-            case "roremipsum2":
-                console.log("roremipsum2를 클릭했습니다.");
+            case "inquiry":
+                console.log("inquiry를 클릭했습니다.");
+                requestInquiry();
                 break;
         }
     });
+
+    /* 실시간 이슈 화면 조회 */
+    function currentIssue(){
+        const issues = $("<p>").text("실시간으로 이슈가 마구 쏟아지고 있다능");
+        $("#contents").html(issues);
+
+    }
+
+    /* 멘토챗 화면 조회 */
+    function mentoChat(){
+        const message = $("<p>").text("준비중인 기능입니다.");
+        $("#contents").html(message);
+    }
 
     /* 자유게시판 클릭시 게시판 화면 조회 */
     async function getBoard() {
@@ -59,8 +75,16 @@ $(document).ready(async function (callback) {
             console.error("게시판을 받아오는 중 에러가 발생했어요!", error);
         }
     }
+    /* 문의사항 보내기 화면 조회 */
+    function requestInquiry() {
+        $("#contents").hide();
+        $(".inquirySection").show();
+    }
 
-
+    /* 문의 제출 버튼 클릭 이벤트 */
+    $("#submit").click(function () {
+        alert("보내버렸슈..")
+    });
 
 
     /* 좌측 메뉴 버튼 클릭 이벤트 */
@@ -133,27 +157,28 @@ $(document).ready(async function (callback) {
             case "memo":
                 requestMemo();
                 break;
-            case "inquiry":
+
+            /*case "inquiry":
                 requestInquiry();
-                break;
+                break;*/
         }
     }
 
     /* 우측 유틸영역 초기화 */
     function initArea() {
-        $(".sidebar_content").empty();
+        //$(".sidebar_content").empty();
         const newTitle = $("<h3>");
         newTitle.attr("id", "content-title");
         newTitle.text("");
-        $(".sidebar_content").append(newTitle);
+        //$(".sidebar_content").append(newTitle);
 
         const newDiv = $("<div>");
         newDiv.attr("id", "content-wrapper");
         newDiv.css("width", "300px");
         newDiv.css("height", "250px");
-        $(".sidebar_content").append(newDiv);
+        //$(".sidebar_content").append(newDiv);
+        $(".sidebar_content").empty().append(newTitle).append(newDiv);
 
-        $(".inquirySection").hide();
         $(".memoryNote").hide();
         $("#noteList").empty();
 
@@ -170,8 +195,7 @@ $(document).ready(async function (callback) {
             let locationSet = {};
             locationSet = findLocation(locationSet, jsonResult[0]);
 
-            const resultMessage = await getWeather(locationSet.lat, locationSet.lon, key);
-            return resultMessage;
+            return await getWeather(locationSet.lat, locationSet.lon, key);
         } catch (error) {
             console.error('Error in : requestWeather() >>> : ' + error);
             return "";
@@ -350,7 +374,6 @@ $(document).ready(async function (callback) {
     function requestMemo() {
         $("#content-wrapper").removeAttr("style");
         $(".side_contents").show();
-        $(".inquirySection").hide(); // 문의하기 숨김
 
         const title = "메모리노트";
         $("#content-title").text(title);
@@ -360,8 +383,9 @@ $(document).ready(async function (callback) {
     }
 
     $("#save").click(function(){
-        localStorage.setItem("note", $("#memoryNote").val());
-        $("#memoryNote").val('').focus();
+        const note = $("#memoryNote");
+        localStorage.setItem("note", note.val());
+        note.val('').focus();
         requestMemo();
     });
 
@@ -369,21 +393,6 @@ $(document).ready(async function (callback) {
         localStorage.setItem("note", "");
         $("#noteList").empty();
         $("#memoryNote").val('').focus();
-    });
-
-    /* 문의사항 보내기 화면 세팅 */
-    function requestInquiry() {
-        $("#content-wrapper").removeAttr("style");
-        $(".side_contents").show();
-        $(".memoryNote").hide(); // 메모리노트 숨김
-
-        const title = "문의하기";
-        $("#content-title").text(title);
-    }
-
-    /* 문의 제출 버튼 클릭 이벤트 */
-    $("#submit").click(function () {
-        alert("보내버렸슈..")
     });
 
 });

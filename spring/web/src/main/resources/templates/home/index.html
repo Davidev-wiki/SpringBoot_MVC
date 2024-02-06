@@ -1,8 +1,5 @@
-<!-- 
-	domain : https://davidev-wiki.github.io/Miracle_Vision_Project/web/
--->
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -35,16 +32,16 @@
             <div class="nav-list top-nav">
                 <ul class="nav nav-tabs justify-content-end">
                     <li class="nav-item">
+                        <a class="nav-link" id="currentIssue" href="#">실시간이슈</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="mentoChat" href="#">멘토링챗</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" id="freeBoard" href="#">자유게시판</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="mentoChat" href="#">멘토챗</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="roremipsum1" href="#">로렘입숨1</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="roremipsum2" href="#">로렘입숨2</a>
+                        <a class="nav-link" id="inquiry" href="#">문의하기</a>
                     </li>
                 </ul>
             </div>
@@ -74,7 +71,7 @@
                                     <li class="page-item"><a class="page-link" href="#" id="map">지도</a></li>
                                     <li class="page-item"><a class="page-link" href="#" id="exchangeRate">환율</a></li>
                                     <li class="page-item"><a class="page-link" href="#" id="memo">메모</a></li>
-                                    <li class="page-item"><a class="page-link" href="#" id="inquiry">문의</a></li>
+
                                 </ul>
                             </nav>
                             <div class="sidebar_content">
@@ -97,20 +94,6 @@
                                 <div class="side_contents mb-3">
                                     <button type="button" id="save" name="save">저장하기</button>
                                     <button type="button" id="remove" name="remove">메모지우기</button>
-                                </div>
-                            </section>
-                            <section class="side_contents inquirySection">
-                                <div class="side_contents mb-3">
-                                    <label for="exampleFormControlInput1" class="form-label">Email 주소</label>
-                                    <input type="email" class="form-control" id="exampleFormControlInput1"
-                                           placeholder="name@example.com">
-                                </div>
-                                <div class="side_contents mb-3">
-                                    <label for="exampleFormControlTextarea1" class="form-label">문의사항</label>
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="6"></textarea>
-                                </div>
-                                <div class="side_contents mb-3">
-                                    <button type="submit" id="submit" name="submit">보내버리기</button>
                                 </div>
                             </section>
                         </aside>
@@ -457,59 +440,21 @@
                 </button>
             </div>
         </section>
-    </div>
-
-    <!--
-    <div class="main sidebar_util_container">
-        <aside class="sidebar_util">
-            <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-center">
-                    <li class="page-item"><a class="page-link" href="#" id="weather">날씨</a></li>
-                    <li class="page-item"><a class="page-link" href="#" id="map">지도</a></li>
-                    <li class="page-item"><a class="page-link" href="#" id="exchangeRate">환율</a></li>
-                    <li class="page-item"><a class="page-link" href="#" id="memo">메모</a></li>
-                    <li class="page-item"><a class="page-link" href="#" id="inquiry">문의</a></li>
-                </ul>
-            </nav>
-            <div class="sidebar_content">
-
+        <section class="inquirySection">
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">문의사항</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="6"></textarea>
             </div>
-			<section class="side_contents memoryNote">
-				<div class="side_contents mb-3">
-                    <fieldset>
-                        <legend>
-                            <h5>현재 등록된 메모</h5>
-                        </legend>
-                        <ul id="noteList" style="max-height:300px">
-                        </ul>
-                    </fieldset>
-				</div>
-				<div class="side_contents mb-3">
-					<label for="memoryNote" class="form-label"></label>
-					<textarea class="form-control" id="memoryNote" rows="6"></textarea>
-				</div>
-				<div class="side_contents mb-3">
-					<button type="button" id="save" name="save">저장하기</button>
-                    <button type="button" id="remove" name="remove">메모지우기</button>
-                </div>
-			</section>
-            <section class="side_contents inquirySection">
-                <div class="side_contents mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Email 주소</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1"
-                           placeholder="name@example.com">
-                </div>
-                <div class="side_contents mb-3">
-                    <label for="exampleFormControlTextarea1" class="form-label">문의사항</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="6"></textarea>
-                </div>
-                <div class="side_contents mb-3">
-                    <button type="submit" id="submit" name="submit">보내버리기</button>
-                </div>
-            </section>
-        </aside>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">답변 받을 Email 주소</label>
+                <input type="email" class="form-control" id="exampleFormControlInput1"
+                       placeholder="name@example.com">
+            </div>
+            <div class="mb-3">
+                <button type="submit" id="submit" name="submit">보내버리기</button>
+            </div>
+        </section>
     </div>
-    -->
 
 </section>
 <footer>

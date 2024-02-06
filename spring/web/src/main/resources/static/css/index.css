@@ -42,7 +42,7 @@
 }
 
 /* 오른쪽 사이드바 */
-.sidebar_util_container, #content-wrapper, .side_contents {
+.sidebar_util_container, #content-wrapper, .side_contents, .inquirySection {
     padding: 2%;
     margin: 1% auto;
     text-align: center;
@@ -73,8 +73,12 @@ footer {
     text-align: center;    
 }
 
-.side_contents {
+.side_contents, .inquirySection {
     display: none;
+}
+
+.inquirySection {
+    padding : 0 17%;
 }
 
 #noteList{
