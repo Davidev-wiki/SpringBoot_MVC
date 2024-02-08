@@ -14,13 +14,12 @@ import java.util.LinkedList;
 
 class BoardRepositoryTest {
 
-    private final String selectSql = "select * from posts";
+    private final String selectSql = "select bnum, title, writer, regdate, views, good from posts";
 
 
     private DataSource dataSource;
 
     /*
-    *
     * spring.datasource.url=jdbc:oracle:thin:@localhost:1521:XE
 spring.datasource.driver-class-name=oracle.jdbc.OracleDriver
 spring.datasource.username=system

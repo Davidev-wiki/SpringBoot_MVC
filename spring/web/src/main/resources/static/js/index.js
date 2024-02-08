@@ -51,14 +51,14 @@ $(document).ready(async function() {
 
     /* 실시간 이슈 화면 조회 */
     function currentIssue(){
-        const issues = $("<p>").text("실시간으로 이슈가 마구 쏟아지고 있다능");
+        const issues = $("<p>").text("창업 키워드로 크롤링");
         $("#contents").html(issues);
 
     }
 
     /* 멘토챗 화면 조회 */
     function mentoChat(){
-        const message = $("<p>").text("준비중인 기능입니다.");
+        const message = $("<p>").text("소켓 통신 : 준비중인 기능입니다");
         $("#contents").html(message);
     }
 

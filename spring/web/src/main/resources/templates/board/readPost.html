@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>게시물 읽기</title>
+    <style>
+        .header-table, .body-table {
+            margin: 2%;
+            text-align: center;
+        }
+
+        .description {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<table class="header-table">
+    <colgroup>
+        <col style="width:40px">
+        <col style="width:300px">
+        <col style="width:120px">
+        <col style="width:120px">
+        <col style="width:60px">
+        <col style="width:60px">
+    </colgroup>
+    <thead>
+    <tr>
+        <td class="description">No</td>
+        <td class="description">제목</td>
+        <td class="description">작성자</td>
+        <td class="description">등록일</td>
+        <td class="description">조회수</td>
+        <td class="description">좋아요</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td th:text="${post.bNum}"></td>
+        <td th:text="${post.title}"></td>
+        <td th:text="${post.writer}"></td>
+        <td th:text="${post.regDate}"></td>
+        <td th:text="${post.views}"></td>
+        <td th:text="${post.good}"></td>
+    </tr>
+    </tbody>
+</table>
+<hr>
+<div class="content-wrapper">
+    <table class="body-table">
+        <colgroup>
+            <col style="width:100px">
+            <col>
+        </colgroup>
+        <tr>
+            <td class="description">내용</td>
+            <td th:text="${post.content}"></td>
+        </tr>
+    </table>
+</div>
+<hr>
+<div class="button-wrapper">
+
+</div>
+</body>
+</html>

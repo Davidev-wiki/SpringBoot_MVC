@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <script src="js/board.js"></script>
+  <link type="text/css" rel="stylesheet" href="/css/board.css">
+</head>
+<body>
+<div class="board-title">
+  <h2>자유게시판</h2>
+  <hr>
+</div>
+<div class="board-content">
+  <table>
+    <caption>캡션 : 게시판 글 목록</caption>
+    <colgroup>
+      <col style="width:85px">
+      <col>
+      <col style="width:120px">
+      <col style="width:120px">
+      <col style="width:85px">
+      <col style="width:85px">
+    </colgroup>
+    <thead>
+    <tr>
+      <th scope="col">번호</th>
+      <th scope="col">제목</th>
+      <th scope="col">작성자</th>
+      <th scope="col">작성일</th>
+      <th scope="col">조회수</th>
+      <th scope="col">좋아요</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="postElements" th:each="post : ${posts}">
+      <td id="postNum" th:text ="${post.bNum}" th:onclick="|location.href='@{/board/readPost(bNum=${post.bNum})}'|"></td>
+      <td id="postTitle" th:text="${post.title}"></td>
+      <td id="postWriter" th:text="${post.writer}"></td>
+      <td id="postRegDate" th:text="${post.regDate}"></td>
+      <td id="postViews" th:text="${post.views}"></td>
+      <td id="postGood" th:text="${post.good}"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<hr>
+<button type="button" id="write">글싸기</button>
+</body>
+</html>
+

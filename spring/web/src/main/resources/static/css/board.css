@@ -1,0 +1,20 @@
+board-content {
+    margin: auto;
+}
+caption {
+    display: none;
+}
+th {
+    height: 35px;
+    font-size: large;
+    font-weight: bold;
+    background-color: #f8ffe9;
+}
+tr {
+    height: 30px;
+    font-size: 16px;
+}
+td {
+    height: 30px;
+    padding: 4px 7px;
+}
