@@ -9,8 +9,8 @@ $(document).ready(function(){
     // 새 창에서 글 싸기 버튼 클릭 후 서버로 전송
     $("#submitBtn").click(function(){
 
-        // 폼 데이터를 가져옴
-        const formData = $("#postForm").serialize();
+        const formData = $("#postForm").seriali
+        // 폼 데이터를 가져옴ze();
 
         // 서버로 POST 요청을 보냄
         $.post("/board/newPost", formData)
