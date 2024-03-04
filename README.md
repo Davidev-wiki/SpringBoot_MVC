@@ -1,6 +1,7 @@
 <p>
   <h1>SpringBoot_MVC</h1>
-  "스타트업 창업 가이드"를 위해 정보를 제공하는 간단한 웹 서비스. 
+  "스타트업 창업 가이드"를 위해 정보를 제공하는 간단한 웹 서비스.
+  <a href="https://davidev-wiki.github.io/SpringBoot_MVC/spring/web/src/main/resources/templates/home/index.html">살펴보기</a>
 </p>
 <br>
 <p>
